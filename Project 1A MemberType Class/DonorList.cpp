@@ -120,16 +120,16 @@ void DonorList::printList() const
 //destroyList
 void DonorList::destroyList()
 {
-	Node* current = first;
-	while (current != nullptr)
+	Node* temp;
+	while(first != nullptr)
 	{
-		current = first;
+		temp = first;
 		first = first->getLink();
-		delete current;
-		current = nullptr;
-
-		--count;
+		delete temp;
+		temp = nullptr;
 	}
+	
+	count = 0;
 }
 
 //destructor
