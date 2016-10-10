@@ -12,17 +12,20 @@ using namespace std;
 class Node
 {
 public:
-	Node(){}
-    Node(const DonorType& theDonor, Node *theLink) 
-		: donor(theDonor), link(theLink){}
-    Node* getLink( ) const { return link; }
-	DonorType getDonor( ) const { return donor; }
-    void setDonor(const DonorType& theDonor) 
-		{ donor = theDonor; }
-    void setLink(Node *theLink) { link = theLink; }
+	Node() {}
+	Node(const DonorType& theDonor, Node *theLink)
+		: donor(theDonor), link(theLink) {}
+	Node* getLink() const { return link; }
+	DonorType getDonor() const { return donor; }
+	void setDonor(const DonorType& theDonor)
+	{
+		donor = theDonor;
+	}
+	void setLink(Node *theLink) { link = theLink; }
+
 private:
-    DonorType donor;		
-    Node *link;		//pointer that points to next node
+	DonorType donor;
+	Node *link;		//pointer that points to next node
 };
 
 
@@ -50,14 +53,18 @@ public:
 	//destroyList
 	void destroyList();
 
+
+	//print
+	void printList() const;
+
 	//destructor
 	~DonorList();
 
 private:
 
-	Node *first;	
+	Node *first;
 	Node *last;		// This is a singly-linked list with a pointer to the last node.
-	int count;		
+	int count;
 };
 
 #endif

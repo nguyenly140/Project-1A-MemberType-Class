@@ -1,5 +1,5 @@
 #include "DonorList.h"
-
+#include <string>
 //default constructor
 DonorList::DonorList()
 {
@@ -11,7 +11,7 @@ void DonorList::addDonor(const string& newFirstName, const string& newLastName, 
 {
 	DonorType info;
 	info.setDonorInfo(newFirstName, newLastName, newMemberID, newDonations);
-	
+
 	Node* nodeOne = new Node(info, nullptr);
 	if (first == nullptr)
 	{
@@ -39,7 +39,7 @@ bool DonorList::searchID(int newMemberID) const
 
 	while (nodeOne != nullptr)
 	{
-		if(nodeOne->getDonor().getMembershipNo() == newMemberID)
+		if (nodeOne->getDonor().getMembershipNo() == newMemberID)
 		{
 			return true;
 		}
@@ -66,10 +66,10 @@ void DonorList::deleteDonor(int newMemberID)
 	if (first != nullptr)
 	{
 		Node *current = first;
-		
+
 		if (first->getDonor().getMembershipNo() == newMemberID)
 		{
-			first = first->getLink();	
+			first = first->getLink();
 			delete current;
 			current = nullptr;
 
@@ -97,26 +97,39 @@ void DonorList::deleteDonor(int newMemberID)
 					current = nullptr;
 					--count;
 				}
-				trailCurrent = trailCurrent->getLink();
-				current = current->getLink();
+				else
+				{
+					trailCurrent = trailCurrent->getLink();
+					current = current->getLink();
+				}
 			}
 		}
+	}
+}
+void DonorList::printList() const
+{
+	Node* current = first;
+
+	while (current != nullptr)
+	{
+		current->getDonor().printMemberInfo();
+		current = current->getLink();
 	}
 }
 
 //destroyList
 void DonorList::destroyList()
 {
-	Node* current = first;
-	while (current != nullptr)
+	Node* temp;
+	while(first != nullptr)
 	{
-		current = first;
+		temp = first;
 		first = first->getLink();
-		delete current;
-		current = nullptr;
-
-		--count;
+		delete temp;
+		temp = nullptr;
 	}
+	
+	count = 0;
 }
 
 //destructor
